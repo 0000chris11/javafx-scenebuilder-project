@@ -1,0 +1,12 @@
+{
+    "configurations": [
+    {
+        "type": "java",
+        "name": "Launch Java Program",
+        "request": "launch",
+        "mainClass": "scenefx.App",
+        "vmArgs": "--module-path C:/C0F/Programming/JAVA/Programs/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml",
+        "projectName": "javafx-scenebuilder-project"
+    }
+    ]
+}
