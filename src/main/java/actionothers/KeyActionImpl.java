@@ -2,30 +2,50 @@ package actionothers;
 
 import com.cofii2.components.javafx.piano.KeyAction;
 
-import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import scenefx.Controller;
 
 public class KeyActionImpl implements KeyAction {
 
-    //RETURN NULL
-    private Controller controller = (Controller) new FXMLLoader(getClass().getResource("/scenefx/App.fxml")).getController();
+    private Controller controller;
+
+    public KeyActionImpl(Controller controller) {
+        this.controller = controller;
+    }
+
+    private void functionBasic(String name) {
+        String randomNote = controller.getNoteLabel().getText();
+        System.out.println(randomNote);
+        if (!randomNote.equals("...")) {
+            String basicName = name.substring(0, name.length() - 1);
+            System.out.println("originalName: " + name);
+            System.out.println("randomNote: " + randomNote);
+            System.out.println("basicName: " + basicName);
+            Label lb = controller.getMessageLabel();
+            if (randomNote.equals(basicName)) {
+                System.out.println("\tCorrect");
+                lb.setText("Correct!");
+                lb.setTextFill(Color.GREEN);
+
+                controller.randomNote();
+            } else {
+                System.out.println("\tWrong");
+                lb.setText("Wrong!");
+                lb.setTextFill(Color.RED);
+            }
+        }
+    }
 
     @Override
     public void whiteKeyPressedAction(String wkpName) {
-        String note = controller.getNoteLabel().getText();
-        if (!note.equals("...")) {
-            if(note.equals(wkpName.substring(0, 1))){
-                System.out.println("CORRECT");
-            }else{
-                System.out.println("WRONG");
-            }
-        }
+        functionBasic(wkpName);
 
     }
 
     @Override
     public void blackKeyPressedAction(String bkpName) {
-        // TODO Auto-generated method stub
+        functionBasic(bkpName);
 
     }
 

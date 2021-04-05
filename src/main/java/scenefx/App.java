@@ -23,7 +23,7 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("App.fxml"));
 
-        primaryStage.setScene(new Scene(root, 600, 300));
+        primaryStage.setScene(new Scene(root/*, 600, 300*/));
         primaryStage.show();
     }
 }

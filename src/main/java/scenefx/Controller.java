@@ -32,6 +32,8 @@ public class Controller implements Initializable {
     @FXML
     private Label noteLabel;
     @FXML
+    private Label messageLabel;
+    @FXML
     private Button buttonStart;
     @FXML
     private Button buttonStop;
@@ -45,6 +47,8 @@ public class Controller implements Initializable {
 
     public void buttonStartAction() {
         buttonStart.setDisable(true);
+        cbOption.setDisable(true);
+        cbDisplay.setDisable(true);
         buttonStop.setDisable(false);
 
         randomNote();
@@ -93,12 +97,14 @@ public class Controller implements Initializable {
 
     public void buttonStopAction() {
         buttonStart.setDisable(false);
+        cbOption.setDisable(false);
+        cbDisplay.setDisable(false);
         buttonStop.setDisable(true);
 
         timer.cancel();
     }
 
-    private void randomNote(){
+    public void randomNote(){
         int n = MOthers.getRandomNumber(1, Note.NOTE_SCALE.length);
         noteLabel.setText(Note.NOTE_SCALE[n]);
     }
@@ -107,7 +113,7 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // NON FXML-CODE
         //PIANO
-        piano = new ScrollerPiano(new KeyActionImpl());
+        piano = new ScrollerPiano(new KeyActionImpl(this));
         piano.setPrefWidth(800);
         piano.setPrefHeight(ScrollerPiano.WK_HEIGHT + 10.0);
         borderPane.setBottom(piano);
@@ -133,6 +139,30 @@ public class Controller implements Initializable {
 
     public void setNoteLabel(Label noteLabel) {
         this.noteLabel = noteLabel;
+    }
+
+    public Label getMessageLabel() {
+        return messageLabel;
+    }
+
+    public void setMessageLabel(Label messageLabel) {
+        this.messageLabel = messageLabel;
+    }
+
+    public ComboBox<String> getCbOption() {
+        return cbOption;
+    }
+
+    public void setCbOption(ComboBox<String> cbOption) {
+        this.cbOption = cbOption;
+    }
+
+    public ComboBox<String> getCbDisplay() {
+        return cbDisplay;
+    }
+
+    public void setCbDisplay(ComboBox<String> cbDisplay) {
+        this.cbDisplay = cbDisplay;
     }
 
 }

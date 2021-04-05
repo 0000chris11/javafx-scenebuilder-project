@@ -88,6 +88,11 @@
                         <Font size="36.0" />
                      </font>
                   </Label>
+                  <Label fx:id="messageLabel">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </VBox>
          </children>
