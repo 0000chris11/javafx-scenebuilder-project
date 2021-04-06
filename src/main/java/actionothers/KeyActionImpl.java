@@ -2,18 +2,31 @@ package actionothers;
 
 import com.cofii2.components.javafx.piano.KeyAction;
 
+import game.Game;
+import javafx.animation.FadeTransition;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 import scenefx.Controller;
 
 public class KeyActionImpl implements KeyAction {
 
     private Controller controller;
+    private FadeTransition fadeTransition;
 
     public KeyActionImpl(Controller controller) {
         this.controller = controller;
-    }
 
+        fadeTransitionConfig();
+    }
+    //GAME-----------------------------------------------------
+    private void gameChoice(String name){
+        String selectedOption = controller.getCbOption().getSelectionModel().getSelectedItem();
+        String selectedDisplay = controller.getCbDisplay().getSelectionModel().getSelectedItem();
+        if(selectedOption.equals(Game.OPTIONS[0]) && selectedDisplay.equals(Game.DISPLAY[0])){
+            functionBasic(name);
+        }
+    }
     private void functionBasic(String name) {
         String randomNote = controller.getNoteLabel().getText();
         System.out.println(randomNote);
@@ -24,6 +37,7 @@ public class KeyActionImpl implements KeyAction {
             System.out.println("basicName: " + basicName);
             Label lb = controller.getMessageLabel();
             if (randomNote.equals(basicName)) {
+                
                 System.out.println("\tCorrect");
                 lb.setText("Correct!");
                 lb.setTextFill(Color.GREEN);
@@ -34,18 +48,25 @@ public class KeyActionImpl implements KeyAction {
                 lb.setText("Wrong!");
                 lb.setTextFill(Color.RED);
             }
+
+            fadeTransition.play();
         }
     }
-
+    //TRANSITION-----------------------------------------------------
+    private void fadeTransitionConfig(){
+        fadeTransition = new FadeTransition(Duration.millis(700), controller.getMessageLabel());
+        fadeTransition.setFromValue(1.0);
+        fadeTransition.setToValue(0);
+    }
+    //KEY-ACTION----------------------------------------------------
     @Override
     public void whiteKeyPressedAction(String wkpName) {
-        functionBasic(wkpName);
-
+        gameChoice(wkpName);
     }
 
     @Override
     public void blackKeyPressedAction(String bkpName) {
-        functionBasic(bkpName);
+        gameChoice(bkpName);
 
     }
 

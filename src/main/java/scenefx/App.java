@@ -11,8 +11,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 /**
- * Hello world!
- *
+ * Test App for Piano guessing game
+ * @author C0FII
  */
 public class App extends Application {
     public static void main(String[] args) {

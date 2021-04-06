@@ -11,6 +11,7 @@ import com.cofii2.components.javafx.piano.ScrollerPiano;
 import com.cofii2.methods.MOthers;
 
 import actionothers.KeyActionImpl;
+import game.Game;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,7 +41,7 @@ public class Controller implements Initializable {
 
     private Timer timer;
     private ScrollerPiano piano;
-
+    //------------------------------------------------------
     public void buttonAction() {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!11");
     }
@@ -103,12 +104,12 @@ public class Controller implements Initializable {
 
         timer.cancel();
     }
-
+    //------------------------------------------------------
     public void randomNote(){
         int n = MOthers.getRandomNumber(1, Note.NOTE_SCALE.length);
         noteLabel.setText(Note.NOTE_SCALE[n]);
     }
-
+    //------------------------------------------------------
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // NON FXML-CODE
@@ -118,13 +119,13 @@ public class Controller implements Initializable {
         piano.setPrefHeight(ScrollerPiano.WK_HEIGHT + 10.0);
         borderPane.setBottom(piano);
         //COMBOBOXES
-        cbOption.getItems().addAll("Basic");
-        cbOption.getSelectionModel().select("Basic");
+        cbOption.getItems().addAll(Game.OPTIONS);
+        cbOption.getSelectionModel().select(Game.OPTIONS[0]);
 
-        cbDisplay.getItems().addAll("Note Name", "Sheet");
-        cbDisplay.getSelectionModel().select("Note Name");
+        cbDisplay.getItems().addAll(Game.DISPLAY);
+        cbDisplay.getSelectionModel().select(Game.DISPLAY[0]);
     }
-
+    //------------------------------------------------------
     public Label getTimeLabel() {
         return timeLabel;
     }
