@@ -4,6 +4,7 @@ import com.cofii2.components.javafx.piano.KeyAction;
 
 import game.Game;
 import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -12,12 +13,15 @@ import scenefx.Controller;
 public class KeyActionImpl implements KeyAction {
 
     private Controller controller;
-    private FadeTransition fadeTransition;
+
+    private FadeTransition labelMessageFadeTransition = new FadeTransition();
+    private TranslateTransition labelNoteTranslateTransition = new TranslateTransition();
+    private FadeTransition labelNoteFadeTransition = new FadeTransition();
 
     public KeyActionImpl(Controller controller) {
         this.controller = controller;
 
-        fadeTransitionConfig();
+        transitionsConfig();
     }
     //GAME-----------------------------------------------------
     private void gameChoice(String name){
@@ -49,14 +53,30 @@ public class KeyActionImpl implements KeyAction {
                 lb.setTextFill(Color.RED);
             }
 
-            fadeTransition.play();
+            labelMessageFadeTransition.play();
+
+            labelNoteTranslateTransition.play();
+            labelNoteFadeTransition.play();
         }
     }
     //TRANSITION-----------------------------------------------------
-    private void fadeTransitionConfig(){
-        fadeTransition = new FadeTransition(Duration.millis(700), controller.getMessageLabel());
-        fadeTransition.setFromValue(1.0);
-        fadeTransition.setToValue(0);
+    private void transitionsConfig(){
+        //LABEL MESSAGE
+        labelMessageFadeTransition.setNode(controller.getMessageLabel());
+        labelMessageFadeTransition.setDuration(Duration.millis(700));
+        labelMessageFadeTransition.setFromValue(1.0);
+        labelMessageFadeTransition.setToValue(0);
+        //LABEL NOTE
+        labelNoteTranslateTransition.setNode(controller.getNoteLabel());
+        labelNoteTranslateTransition.setDuration(Duration.millis(400));
+        labelNoteTranslateTransition.setFromX(-30);
+        labelNoteTranslateTransition.setToX(0);
+
+        labelNoteFadeTransition.setNode(controller.getNoteLabel());
+        labelNoteFadeTransition.setDuration(Duration.millis(400));
+        labelNoteFadeTransition.setFromValue(0);
+        labelNoteFadeTransition.setToValue(1.0);
+        //labelNoteFadeTransition
     }
     //KEY-ACTION----------------------------------------------------
     @Override

@@ -76,7 +76,7 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="267.0" prefWidth="297.0" HBox.hgrow="ALWAYS">
+            <VBox fx:id="rightVBox" alignment="CENTER" prefHeight="267.0" prefWidth="297.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label fx:id="timeLabel" text="00:00" VBox.vgrow="NEVER">
                      <font>

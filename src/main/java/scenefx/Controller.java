@@ -5,6 +5,8 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.cofii2.components.javafx.NoteType;
+import com.cofii2.components.javafx.Sheet;
 import com.cofii2.components.javafx.piano.KeyAction;
 import com.cofii2.components.javafx.piano.Note;
 import com.cofii2.components.javafx.piano.ScrollerPiano;
@@ -19,11 +21,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 public class Controller implements Initializable {
 
     @FXML
     private BorderPane borderPane;
+    @FXML
+    private VBox rightVBox;
     @FXML
     private ComboBox<String> cbOption;
     @FXML
@@ -41,6 +46,7 @@ public class Controller implements Initializable {
 
     private Timer timer;
     private ScrollerPiano piano;
+    private Sheet sheet = new Sheet();
     //------------------------------------------------------
     public void buttonAction() {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!11");
@@ -121,9 +127,24 @@ public class Controller implements Initializable {
         //COMBOBOXES
         cbOption.getItems().addAll(Game.OPTIONS);
         cbOption.getSelectionModel().select(Game.OPTIONS[0]);
-
+        
         cbDisplay.getItems().addAll(Game.DISPLAY);
         cbDisplay.getSelectionModel().select(Game.DISPLAY[0]);
+        cbDisplay.getSelectionModel().selectedItemProperty().addListener(e -> {
+            String seletedItem = cbDisplay.getSelectionModel().getSelectedItem();
+            if(seletedItem.equals(Game.DISPLAY[0])){
+                sheet.setVisible(false);
+                noteLabel.setVisible(true);
+            }else if(seletedItem.equals(Game.DISPLAY[1])){
+                noteLabel.setVisible(false);
+                sheet.setVisible(true);
+            }
+        });
+        //SHEET TEST
+        sheet.addNote(new NoteType("A4", NoteType.WHOLE_NOTE));
+        sheet.setVisible(false);
+        rightVBox.getChildren().add(sheet);
+    
     }
     //------------------------------------------------------
     public Label getTimeLabel() {
