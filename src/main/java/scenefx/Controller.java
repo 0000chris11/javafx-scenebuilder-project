@@ -124,7 +124,7 @@ public class Controller implements Initializable {
             }
         });
         //SHEET TEST
-        sheet.addNote(new NoteType("F#4", NoteType.WHOLE_NOTE));
+        sheet.addNote(new NoteType("Ab4", NoteType.WHOLE_NOTE));
     
     }
     //------------------------------------------------------
