@@ -5,13 +5,14 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.cofii2.components.javafx.NoteType;
-import com.cofii2.components.javafx.Sheet;
+import com.cofii2.components.javafx.sheet.NoteType;
+import com.cofii2.components.javafx.sheet.Sheet;
 import com.cofii2.components.javafx.TimeLabel;
-import com.cofii2.components.javafx.piano.KeyAction;
 import com.cofii2.components.javafx.piano.Note;
 import com.cofii2.components.javafx.piano.ScrollerPiano;
 import com.cofii2.methods.MOthers;
+import com.cofii2.mysql.DefaultConnection;
+import com.cofii2.mysql.MSQLP;
 
 import actionothers.KeyActionImpl;
 import game.Game;
@@ -125,7 +126,11 @@ public class Controller implements Initializable {
         });
         //SHEET TEST
         sheet.addNote(new NoteType("Ab4", NoteType.WHOLE_NOTE));
-    
+
+        MSQLP msqlp = new MSQLP(new DefaultConnection());
+        System.out.println("pickCall: " + msqlp.pickCall("insertTest", "Edge", "Existence"));
+
+        //msqlp.close();
     }
     //------------------------------------------------------
     public Label getTimeLabel() {
