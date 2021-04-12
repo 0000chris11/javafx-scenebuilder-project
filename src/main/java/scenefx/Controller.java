@@ -128,7 +128,7 @@ public class Controller implements Initializable {
         sheet.addNote(new NoteType("Ab4", NoteType.WHOLE_NOTE));
 
         MSQLP msqlp = new MSQLP(new DefaultConnection());
-        System.out.println("pickCall: " + msqlp.pickCall("insertTest", "Edge", "Existence"));
+        msqlp.pickCall("getSomething", , "NONE", "");//NO NEED TO PASS A SECOND PARAM IF ITS >OUT< BUT I STILL NEED TO KNOW THE LENGHT OF THE PARAMETERS
 
         //msqlp.close();
     }
