@@ -12,7 +12,9 @@ import com.cofii2.components.javafx.piano.Note;
 import com.cofii2.components.javafx.piano.ScrollerPiano;
 import com.cofii2.methods.MOthers;
 import com.cofii2.mysql.DefaultConnection;
+import com.cofii2.mysql.MSQLC;
 import com.cofii2.mysql.MSQLP;
+import com.cofii2.mysql.store.CallParam;
 
 import actionothers.KeyActionImpl;
 import game.Game;
@@ -126,11 +128,9 @@ public class Controller implements Initializable {
         });
         //SHEET TEST
         sheet.addNote(new NoteType("Ab4", NoteType.WHOLE_NOTE));
-
+        //-------------------------------------------------------------
         MSQLP msqlp = new MSQLP(new DefaultConnection());
-        msqlp.pickCall("getSomething", , "NONE", "");//NO NEED TO PASS A SECOND PARAM IF ITS >OUT< BUT I STILL NEED TO KNOW THE LENGHT OF THE PARAMETERS
-
-        //msqlp.close();
+        
     }
     //------------------------------------------------------
     public Label getTimeLabel() {
